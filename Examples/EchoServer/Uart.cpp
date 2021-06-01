@@ -61,7 +61,7 @@ void Uart::PutChar(uint8_t byteToTransmit)
    PutString(&byteToTransmit, 1);
 }
 
-void Uart::PutString(const uint8_t* stringToTransmit, uint16_t numberOfBytes) 
+void Uart::PutString(const uint8_t* stringToTransmit, size_t numberOfBytes) 
 {
    if (IsConnected())
    {
