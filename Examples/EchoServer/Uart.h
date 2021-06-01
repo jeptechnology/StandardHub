@@ -2,6 +2,7 @@
 
 #include <termios.h>
 #include <chrono>
+#include <string>
 
 class Uart
 {
@@ -18,7 +19,7 @@ public:
    
    bool GetByteNonBlocking(uint8_t &byteToBeReceived);
    bool GetByte_BlockingFor(uint8_t &byteToBeReceived, std::chrono::milliseconds milliSecondsToBlock);
-   u8   GetCharAndWaitForever();
+   uint8_t GetCharAndWaitForever();
    bool IsConnected() const;
    
    int GetFd() const { return m_fd; }

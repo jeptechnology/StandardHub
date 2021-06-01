@@ -2,6 +2,9 @@
 #include <fcntl.h>   // Contains file controls like O_RDWR
 #include <unistd.h>  // write(), read(), close()
 #include <sys/time.h> 
+#include <cerrno>
+#include <iostream>
+
 #include "Uart.h"
 
 using namespace std;
@@ -53,12 +56,12 @@ Uart::Uart(const char *deviceName)
    }
 }
 
-void Uart::PutChar(u8 byteToTransmit) 
+void Uart::PutChar(uint8_t byteToTransmit) 
 {
    PutString(&byteToTransmit, 1);
 }
 
-void Uart::PutString(const u8* stringToTransmit, u16 numberOfBytes) 
+void Uart::PutString(const uint8_t* stringToTransmit, uint16_t numberOfBytes) 
 {
    if (IsConnected())
    {
@@ -70,7 +73,7 @@ void Uart::PutString(const u8* stringToTransmit, u16 numberOfBytes)
    }
 }
 
-bool Uart::GetByteNonBlocking(u8 &byteToBeReceived) 
+bool Uart::GetByteNonBlocking(uint8_t &byteToBeReceived) 
 {
    if (IsConnected() && read(m_fd, &byteToBeReceived, 1) > 0)
    {
@@ -79,7 +82,7 @@ bool Uart::GetByteNonBlocking(u8 &byteToBeReceived)
    return false;
 }
 
-bool Uart::GetByte_BlockingFor(u8 &byteToBeReceived, std::chrono::milliseconds milliSecondsToBlock) 
+bool Uart::GetByte_BlockingFor(uint8_t &byteToBeReceived, std::chrono::milliseconds milliSecondsToBlock) 
 {
    if (!IsConnected())
    {
@@ -98,10 +101,10 @@ bool Uart::GetByte_BlockingFor(u8 &byteToBeReceived, std::chrono::milliseconds m
    return false;
 }
 
-u8 Uart::GetCharAndWaitForever() 
+uint8_t Uart::GetCharAndWaitForever() 
 {
-   u8 c;
-   while (!GetByte_BlockingFor(c, std::chrono::seconds(1)));
+   uint8_t c;
+   while (!GetByte_BlockingFor(c, 1s));
    return c;
 }
 
