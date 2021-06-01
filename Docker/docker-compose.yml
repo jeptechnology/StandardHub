@@ -1,0 +1,36 @@
+version: "3.6"
+
+services:
+  alpine-dev:
+    container_name: alpine-dev
+    build: .
+    restart: unless-stopped
+    volumes:
+      - private:/data/private   # volume only mounted with this container
+      - shared:/data/shared     # volume shared with all other containers
+      - /tmp:/tmp
+      - /sys/class/gpio/gpio34/value:/hardware/efr32reset # efr32 reset gpio
+      - /sys/devices/soc0/pwm_leds/leds:/hardware/leds    # led controls
+
+    ports:
+      # WARNING: This is exposing these ports to the outside world and should not be done in productions 
+      # without serious thinking!
+
+      # This is the ssh port used by the alpine development container so you can get a shell inside the container
+      - ${DOCKER_SSH_PORT-2222}:${DOCKER_SSH_PORT-2222}
+      # This is the gdb server port used by the alpine development container so you can connect to it from your dev host
+      - ${GBDSERVER_PORT-2159}:${GBDSERVER_PORT-2159}
+
+    devices:
+      # The application CLI UART device should be found at /dev/ttymxc1 on standard hub
+      - /dev/ttymxc1:/hardware/cliuart
+      # The zigbee UART device should be found at /dev/ttymxc2 on standard hub
+      - /dev/ttymxc2:/hardware/efr32uart
+      # Setup button events are on /dev/input/
+      - /dev/input:/hardware/setupbutton
+
+volumes:
+  private: # alpine-dev's private data
+    name: alpine-dev
+  shared: # shared volume
+    name: shared
