@@ -3,8 +3,8 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <sys/time.h> 
 #include <unistd.h>
-#include <linux/input.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -13,9 +13,16 @@
 // Local private functions
 namespace
 {
-   int fdAvailable(int fd, u32 waitTimeMs)
+   int fdAvailable(int fd, int waitTimeMs)
    {
+      struct timeval tv;
+      tv.tv_sec = (waitTimeMs / 1000);
+      tv.tv_usec = (waitTimeMs * 1000) % 1000000;
 
+      fd_set fds;
+      FD_ZERO(&fds);
+      FD_SET(fd, &fds);
+      return select(fd + 1, &fds, NULL, NULL, &tv);
    }
 }
 
@@ -46,7 +53,7 @@ void Button::PollingTask()
 {
    struct input_event event;  
    
-   while (!Os::IsShuttingDown())
+   while (true)
    {
       if (fdAvailable(m_fd, 1000) && read(m_fd, &event, sizeof(event))) 
       {
@@ -63,7 +70,7 @@ bool Button::IsDepressed()
    return m_lastState; 
 }
    
-void Button::RegisterHandler(std::function<void(Event, ISRContext&)> handler)
+void Button::RegisterHandler(std::function<void(bool)>&& handler)
 {
    m_callback = handler;
 }
