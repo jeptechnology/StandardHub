@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdarg.h>
+#include <iostream>
 #include "Led.h"
 
 using namespace std;
@@ -52,8 +52,6 @@ void Led::SetPattern(int brightness1,
          cerr << "LED Error: Unable to set state" << endl;
       }      
    }
-   
-   m_state = state;
 }
 
 void Led::ToggleLed(void)
