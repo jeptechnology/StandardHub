@@ -1,5 +1,6 @@
 #pragma once
-#include <cstdint.h>
+
+#include <cstdint>
 
 class Led
 {
