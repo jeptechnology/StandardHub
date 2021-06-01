@@ -3,9 +3,10 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 #include <iostream>
+#include <cinttypes>
 #include "Led.h"
 
 using namespace std;
@@ -26,10 +27,10 @@ Led::Led(const char* ledName, const char *devicePath)
    SetPattern(0, 0, 0, 0);
 }
   
-void Led::SetPattern(int brightness1,
-                     int delay1Ms,
-                     int brightness2,
-                     int delay2Ms)
+void Led::SetPattern(uint8_t  brightness1,
+                     uint16_t delay1Ms,
+                     uint8_t  brightness2,
+                     uint16_t delay2Ms)
 {
    m_brightness1 = brightness1;
    m_brightness2 = brightness2;
@@ -40,7 +41,7 @@ void Led::SetPattern(int brightness1,
    {
       char buf[32];
       
-      auto len = snprintf(buf, sizeof(buf), "%d %d %d %d\n",
+      auto len = snprintf(buf, sizeof(buf), "%" PRIu8 " %" PRIu16 " %" PRIu8 " %" PRIu16 "\n",
          m_brightness1,   // start at this brightness...
          m_delay1Ms,      // then fade for this duration...
          m_brightness2,   // ...and end up at this brightness
