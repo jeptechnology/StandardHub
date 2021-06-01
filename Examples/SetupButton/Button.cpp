@@ -4,6 +4,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/time.h> 
+#include <linux/input.h> // struct input_event, EV_KEY
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -36,7 +37,7 @@ Button::Button(const char *name, const char* devicePath)
       m_fd = open(devicePath, O_RDONLY);
       if (m_fd > 0)
       {         
-         m_pollThread = std::make_unique<std::thread>(0, Os::ThreadPriority::High, name, [this] { this->PollingTask(); });
+         m_pollThread = std::make_unique<std::thread>([&] { this->PollingTask(); });
       }
    }
 }
