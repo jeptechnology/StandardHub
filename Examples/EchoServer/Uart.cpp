@@ -86,7 +86,7 @@ bool Uart::GetByte_BlockingFor(uint8_t &byteToBeReceived, std::chrono::milliseco
 {
    if (!IsConnected())
    {
-      sleep(milliSecondsToBlock / 1000);
+      sleep(milliSecondsToBlock.count() / 1000);
       return false;
    }
    

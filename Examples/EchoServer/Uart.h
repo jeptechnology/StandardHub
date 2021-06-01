@@ -14,7 +14,7 @@ public:
    Uart(const char *deviceName);
 
    void PutChar(uint8_t byteToTransmit);
-   void PutString(const uint8_t* stringToTransmit, u16 numberOfBytes);
+   void PutString(const uint8_t* stringToTransmit, uint16_t numberOfBytes);
    void PutString(const char* stringToTransmit);
    
    bool GetByteNonBlocking(uint8_t &byteToBeReceived);
