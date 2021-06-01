@@ -5,9 +5,9 @@
 
 using namespace std;
 
-void Callback(bool isPressed)
+void ButtonCallback(bool isPressed)
 {
-   cout << "Setup button is now " << (on ? "pressed" : "released") << endl;
+   cout << "Setup button is now " << (isPressed ? "pressed" : "released") << endl;
 }
 
 int main(int argc, char *argv[])
@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 	cout << "Setup button test." << endl;
 
    // register a callback for when the button changes state
-   setup.RegisterHandler(Callback);
+   setup.RegisterHandler(ButtonCallback);
    
    while (1)
    {
