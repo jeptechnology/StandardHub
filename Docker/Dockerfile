@@ -8,6 +8,7 @@ RUN apk --update add \
       bash \
       openssh \
       alpine-sdk \
+      linux-headers \
       cmake \
       gdb \
    && echo "#include <unistd.h>" > /usr/include/sys/unistd.h \    
