@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
          if (++counter >= 10)
          {
             cout << "UART2 has recieved another 10 bytes" << endl;
+            counter = 0;
          }
       }
       else

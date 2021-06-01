@@ -65,11 +65,7 @@ void Uart::PutString(const uint8_t* stringToTransmit, size_t numberOfBytes)
 {
    if (IsConnected())
    {
-      auto bytesWritten = write(m_fd, stringToTransmit, numberOfBytes);
-      if (bytesWritten < (ssize_t)stringToTransmit)
-      {
-         cerr << "Failed to write all bytes to UART" << endl;
-      }
+      write(m_fd, stringToTransmit, numberOfBytes);
    }
 }
 
