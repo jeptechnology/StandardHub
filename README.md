@@ -16,7 +16,7 @@ Find your hub's IP address either:
 - check with your router
 
 Log on to your hub using ssh:
-`ssh fio@hub_ip_address`
+`ssh fio@[hub_ip_address]`
 
 Go to your home folder and clone this repo:
 ```
@@ -41,7 +41,7 @@ This container is one that you can develop your code inside.
 Connect to this container from your development PC:
 
 ```
-ssh -p 2222 fio@192.168.1.111
+ssh -p 2222 fio@[hub_ip_address]
 ```
 
 You need to clone this repo again inside the sandbox container. I recommend you install to `/data/shared` so that it will be preserved if you were to update your container in future.
