@@ -1,0 +1,6 @@
+[
+   {
+      "name": "Std Hub Alpine 3.13",
+      "toolchainFile": "../toolchain-stdhub.cmake"
+   }
+]
