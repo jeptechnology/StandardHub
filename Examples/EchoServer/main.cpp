@@ -1,6 +1,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <chrono>
+#include <cstring>
 
 #include "Uart.h"
 

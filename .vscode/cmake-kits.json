@@ -1,0 +1,7 @@
+[
+    {
+       "name": "armv7l-linux-musleabihf-cross",
+       "toolchainFile": "${workspaceFolder}/armv7l-linux-musleabihf-toolchain.cmake"
+    }
+ ]
+ 
