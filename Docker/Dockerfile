@@ -2,15 +2,24 @@
 # Alpine linux Docker App development container
 ############################################################
 
-FROM alpine:3.13
+FROM alpine:3.12
 
 RUN apk --update add \
       bash \
       openssh \
       alpine-sdk \
+      gdb \
       linux-headers \
       cmake \
-      gdb \
+      libmicrohttpd \
+      libmicrohttpd-dev \
+      hostapd \
+      wpa_supplicant \
+      mosquitto \
+      mosquitto-dev \
+      openssl \
+      openssl-dev \
+      dhcpcd \
    && echo "#include <unistd.h>" > /usr/include/sys/unistd.h \    
    && rm -rf /var/cache/apk/*
 
