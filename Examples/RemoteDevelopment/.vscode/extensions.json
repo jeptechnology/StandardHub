@@ -1,8 +1,0 @@
-{
-   "recommendations": [
-       "ms-vscode.cpptools",
-       "twxs.cmake",
-       "ms-vscode.cmake-tools",
-       "asciidoctor.asciidoctor-vscode"
-   ]
- }

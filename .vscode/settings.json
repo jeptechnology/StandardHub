@@ -1,5 +1,5 @@
 {
-    "cmake.generator": "Ninja",
+    "cmake.generator": "Unix Makefiles",
     "cmake.buildDirectory": "${workspaceFolder}/build/${buildKit}",
-    // "cmake.buildTask": true
+    "cmake.buildTask": true
 }
