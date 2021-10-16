@@ -12,7 +12,7 @@ void ButtonCallback(bool isPressed)
 
 int main(int argc, char *argv[])
 {
-   Button setup("setup", "/hardware/setupbutton/event1");
+   Button setup("/hardware/setupbutton/event1");
 
 	cout << "Setup button test." << endl;
 

@@ -16,7 +16,7 @@ class Button
    void FireEvent(bool newState);   
 
  public:
-   Button(const char *name, const char *devicePath);
+   Button(const char *devicePath);
    ~Button();
    
    bool IsDepressed();

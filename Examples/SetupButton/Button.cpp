@@ -27,7 +27,7 @@ namespace
    }
 }
 
-Button::Button(const char *name, const char* devicePath)
+Button::Button(const char* devicePath)
    : m_fd(0)
    , m_lastState(false)
    , m_callback(nullptr)   
