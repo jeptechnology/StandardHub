@@ -29,17 +29,15 @@ int main(int argc, char *argv[])
       {  
          // echo back to user
          uart.PutChar(c);
-
-         // log when we've received more than 10 bytes...
-         if (++counter >= 10)
-         {
-            cout << "UART2 has recieved another 10 bytes" << endl;
-            counter = 0;
-         }
+         
+         // output on stdout
+         cout << c;
+         if (c == '\r') cout << '\n';
+         cout.flush();
       }
       else
       {
-         cout << "UART2 has been idle for 5 seconds" << endl;
+         cout << endl << "UART2 has been idle for 5 seconds" << endl;
       }
    }
 
