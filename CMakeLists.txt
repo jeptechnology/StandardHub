@@ -37,12 +37,4 @@ message("CMAKE_CXX_FLAGS_DEBUG: ${CMAKE_CXX_FLAGS_DEBUG}")
 message("CMAKE_CXX_FLAGS_RELEASE: ${CMAKE_CXX_FLAGS_RELEASE}")
 add_definitions(-D__linux__ -D__gnu_linux__ -D_GNU_SOURCE -D_POSIX_SOURCE)
 
-add_subdirectory(Examples)
-
-# file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/Stripped)
-# add_custom_command(TARGET WiserHomeLinux POST_BUILD
-#    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_BINARY_DIR}/WiserHomeLinux ${CMAKE_CURRENT_BINARY_DIR}/Stripped/WiserHomeLinux
-#    COMMAND ${TOOLCHAIN_ROOT}/bin/armv7l-linux-musleabihf-strip${exe} ${CMAKE_CURRENT_BINARY_DIR}/Stripped/WiserHomeLinux
-#    COMMAND ${CMAKE_COMMAND} -E echo "SUCCESS: WiserHomeLinux is now ready for emplacing in a docker container"
-#    COMMENT Stripping WiserHomeLinux application binary of debugging symbols...
-# )
+add_executable(ExampleProgram source/main.cpp)

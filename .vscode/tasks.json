@@ -1,48 +1,47 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
-    "version": "2.0.0",
-       "tasks": [
-       {
-          "label": "CopyWiserHomeLinux",
-          "type": "shell",
-          "command": "scp",
-          "args": [
-             "-p2222",
-             "${workspaceRoot}/build/WiserHomeLinux",
-             "fio@standardhub:/tmp"
-          ]
-       },
-       {
-          "label": "ChmodWiserHomeLinux",
-          "type": "shell",
-          "command": "ssh",
-          "args": [
-             "-p2222",
-             "fio@standardhub",
-             "-f",
-             "'chmod +x /tmp/WiserHomeLinux'"
-          ]
-       },
-       {
-          "label": "Provision",
-          "dependsOrder": "sequence",
-          "dependsOn": [
-             "CopyWiserHomeLinux",
-             "ChmodWiserHomeLinux"
-          ]
-       },
-       {
-          "label": "gdbserver",
-          "type": "shell",
-          "command": "ssh",
-          "args": [
-             "-p2222",
-             "fio@standardhub",
-             "-f",
-             "'nohup gdbserver --multi :2159 /tmp/WiserHomeLinux </dev/null >command.log 2>&1 &'"
-          ]
-       }
-    ]
- }
- 
+   // See https://go.microsoft.com/fwlink/?LinkId=733558
+   // for the documentation about the tasks.json format
+   "version": "2.0.0",
+   "tasks": [
+      {
+         "label": "CopyWiserHomeLinux",
+         "type": "shell",
+         "command": "scp",
+         "args": [
+            "-p2222",
+            "${workspaceRoot}/build/WiserHomeLinux",
+            "fio@standardhub:/tmp"
+         ]
+      },
+      {
+         "label": "ChmodWiserHomeLinux",
+         "type": "shell",
+         "command": "ssh",
+         "args": [
+            "-p2222",
+            "fio@standardhub",
+            "-f",
+            "'chmod +x /tmp/WiserHomeLinux'"
+         ]
+      },
+      {
+         "label": "Provision",
+         "dependsOrder": "sequence",
+         "dependsOn": [
+            "CopyWiserHomeLinux",
+            "ChmodWiserHomeLinux"
+         ]
+      },
+      {
+         "label": "gdbserver",
+         "type": "shell",
+         "command": "ssh",
+         "args": [
+            "-p2222",
+            "fio@standardhub",
+            "-f",
+            "'nohup gdbserver --multi :2159 /tmp/WiserHomeLinux </dev/null >command.log 2>&1 &'"
+         ]
+      }
+   ]
+}
