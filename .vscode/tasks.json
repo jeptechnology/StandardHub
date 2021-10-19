@@ -4,32 +4,33 @@
    "version": "2.0.0",
    "tasks": [
       {
-         "label": "CopyWiserHomeLinux",
+         "label": "CopyTarget",
          "type": "shell",
          "command": "scp",
          "args": [
             "-p2222",
-            "${workspaceRoot}/build/WiserHomeLinux",
-            "fio@standardhub:/tmp"
+            "${command:cmake.buildDirectory}/Examples/${command:cmake.buildTargetName}/${command:cmake.buildTargetName}",
+            //"${workspaceRoot}/build/stdhub-alpine-cross/Examples/HelloWorld/HelloWorld",
+            "fio@wiserheat00fff0.local:/tmp"
          ]
       },
       {
-         "label": "ChmodWiserHomeLinux",
+         "label": "ChmodTarget",
          "type": "shell",
          "command": "ssh",
          "args": [
             "-p2222",
-            "fio@standardhub",
+            "fio@wiserheat00fff0.local",
             "-f",
-            "'chmod +x /tmp/WiserHomeLinux'"
+            "'chmod +x /tmp/HelloWorld'"
          ]
       },
       {
          "label": "Provision",
          "dependsOrder": "sequence",
          "dependsOn": [
-            "CopyWiserHomeLinux",
-            "ChmodWiserHomeLinux"
+            "CopyTarget",
+            "ChmodTarget"
          ]
       },
       {
@@ -38,9 +39,9 @@
          "command": "ssh",
          "args": [
             "-p2222",
-            "fio@standardhub",
+            "fio@wiserheat00fff0.local",
             "-f",
-            "'nohup gdbserver --multi :2159 /tmp/WiserHomeLinux </dev/null >command.log 2>&1 &'"
+            "'nohup gdbserver --multi :2159 /tmp/HelloWorld </dev/null >command.log 2>&1 &'"
          ]
       }
    ]

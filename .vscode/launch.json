@@ -5,23 +5,14 @@
           "name": "C++ gdbserver",
           "type": "cppdbg",
           "request": "launch",
-          "program": "${workspaceRoot}/build/WiserHomeLinux",
+          "program": "${command:cmake.buildDirectory}/Examples/${command:cmake.buildTargetName}/${command:cmake.buildTargetName}",
           "preLaunchTask": "gdbserver",
-          "linux": {
-             "miDebuggerPath": "/usr/bin/gdb-multiarch",
-             "setupCommands": [
-             {"text": "handle SIGILL pass nostop noprint"},
-             {"text": "set sysroot /opt/armv7l-linux-musleabihf-cross/armv7l-linux-musleabihf"}
-             ]
-          },
-          "windows": {
-             "miDebuggerPath": "${env:LOCALAPPDATA}/GCC_ARM/armv7l-linux-musleabihf-cross/bin/armv7l-linux-musleabihf-gdb.exe",
-             "setupCommands": [
-             {"text": "handle SIGILL pass nostop noprint"},
-             {"text": "set sysroot ${env:LOCALAPPDATA}\\GCC_ARM\\armv7l-linux-musleabihf-cross\\armv7l-linux-musleabihf"}
-             ]
-          },
-          "miDebuggerServerAddress": "standardhub:2159",
+          "miDebuggerPath": "/usr/bin/gdb-multiarch",
+          "setupCommands": [
+            {"text": "handle SIGILL pass nostop noprint"},
+            {"text": "set sysroot /opt/armv7l-linux-musleabihf-cross/armv7l-linux-musleabihf"}
+          ],          
+          "miDebuggerServerAddress": "wiserheat00fff0.local:2159",
           "cwd": "${workspaceRoot}",
           "externalConsole": true
        }
