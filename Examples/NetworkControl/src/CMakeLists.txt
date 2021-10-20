@@ -7,7 +7,7 @@ project(NetworkControlExampleApp)
 set(LIBRARIES_FROM_REFERENCES NetworkControlLibrary)
 
 add_executable(NetworkControlExampleApp main.cpp TestRunner.cpp TestSequences.cpp TestSequences.h TestRunner.h NetworkControlBuilder.cpp NetworkControlBuilder.h)
-target_include_directories(NetworkControlExampleApp PRIVATE ../NetworkControl ../NetworkControl/Wpa)
+target_include_directories(NetworkControlExampleApp PRIVATE ../lib ../lib/Wpa)
 target_link_libraries(NetworkControlExampleApp "${LIBRARIES_FROM_REFERENCES}")
 source_group(wpa FILES)
 
