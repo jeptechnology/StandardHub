@@ -7,4 +7,5 @@ add_subdirectory(Examples/ColourCycle)
 add_subdirectory(Examples/EchoServer)
 add_subdirectory(Examples/HelloWorld)
 add_subdirectory(Examples/SetupButton)
+add_subdirectory(Examples/MQTT)
 
